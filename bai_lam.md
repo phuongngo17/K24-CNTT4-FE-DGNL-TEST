@@ -25,11 +25,11 @@
 
 > Chấm trực tiếp trên mã nguồn thư mục officemart_admin.
 
-- [ ] 4.2.1. Tải danh sách
-- [ ] 4.2.2. Form thêm sản phẩm
-- [ ] 4.2.3. Gửi form
-- [ ] 4.2.4. Sửa sản phẩm
-- [ ] 4.2.5. Xoá sản phẩm
+- [x] 4.2.1. Tải danh sách
+- [x] 4.2.2. Form thêm sản phẩm
+- [x] 4.2.3. Gửi form
+- [x] 4.2.4. Sửa sản phẩm
+- [x] 4.2.5. Xoá sản phẩm
 
 ## 4.3. Tìm kiếm, lọc và phân trang
 
