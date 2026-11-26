@@ -14,10 +14,10 @@
 
 > Chấm trực tiếp trên mã nguồn thư mục officemart_admin. Đánh dấu `[x]` vào các mục đã làm để tự kiểm tra.
 
-- [ ] 4.1.1. Bố cục trang
-- [ ] 4.1.2. Bảng sản phẩm
-- [ ] 4.1.3. Định dạng dữ liệu
-- [ ] 4.1.4. Hiển thị trên điện thoại
+- [x] 4.1.1. Bố cục trang
+- [x] 4.1.2. Bảng sản phẩm
+- [x] 4.1.3. Định dạng dữ liệu
+- [x] 4.1.4. Hiển thị trên điện thoại
 
 ## 4.2. Thêm, sửa, xoá sản phẩm qua API
 
