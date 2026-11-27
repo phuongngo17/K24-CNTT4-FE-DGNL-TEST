@@ -1,6 +1,6 @@
 /* src/App.css */
 /* ============================================================================
-   CSS GIAO DIỆN QUẢN TRỊ OFFICEMART ADMIN (MỤC 4.1 & 4.2)
+   CSS GIAO DIỆN QUẢN TRỊ OFFICEMART ADMIN (MỤC 4.1, 4.2 & 4.3)
    ============================================================================ */
 
 /* ----------------------------------------------------------------------------
@@ -149,6 +149,57 @@ body {
 }
 
 /* ----------------------------------------------------------------------------
+   4.3.1 THANH CÔNG CỤ TÌM KIẾM VÀ BỘ LỌC
+   ---------------------------------------------------------------------------- */
+.filter-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-item {
+  flex: 1;
+  min-width: 180px;
+}
+
+.filter-input,
+.filter-select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  background-color: #ffffff;
+  color: #111827;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.filter-input:focus,
+.filter-select:focus {
+  outline: none;
+  border-color: #b91c1c;
+  box-shadow: 0 0 0 2px rgba(185, 28, 28, 0.15);
+}
+
+/* ----------------------------------------------------------------------------
+   4.3.2 VÙNG PHÂN TRANG (Pagination)
+   ---------------------------------------------------------------------------- */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.page-info {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+/* ----------------------------------------------------------------------------
    4.1.2 BẢNG SẢN PHẨM (Desktop >= 768px)
    ---------------------------------------------------------------------------- */
 .table-responsive {
@@ -202,7 +253,6 @@ body {
 /* ----------------------------------------------------------------------------
    4.1.3 ĐỊNH DẠNG DỮ LIỆU: TRẠNG THÁI VÀ TỒN KHO
    ---------------------------------------------------------------------------- */
-/* Nhãn trạng thái (data-testid="product-status") */
 .status-badge {
   display: inline-block;
   padding: 3px 10px;
@@ -213,19 +263,16 @@ body {
   white-space: nowrap;
 }
 
-/* active: Đang bán (nền xanh) */
 .status-active {
   background-color: #dcfce7;
   color: #15803d;
 }
 
-/* inactive: Ngừng bán (nền xám) */
 .status-inactive {
   background-color: #f3f4f6;
   color: #4b5563;
 }
 
-/* Tồn kho bằng 0 hiển thị "Hết hàng" màu đỏ */
 .out-of-stock {
   color: #dc2626;
   font-weight: 600;
@@ -421,6 +468,17 @@ body {
     font-size: 1.5rem;
   }
 
+  /* Thanh lọc xếp dọc trên điện thoại */
+  .filter-bar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filter-item {
+    width: 100%;
+    min-width: 100%;
+  }
+
   /* Chuyển table sang Card layout trên điện thoại */
   .table-responsive {
     background: transparent;
@@ -435,7 +493,7 @@ body {
   }
 
   .product-table thead {
-    display: none; 
+    display: none;
   }
 
   .product-table tbody {
@@ -445,7 +503,6 @@ body {
     width: 100%;
   }
 
-  /* Mỗi dòng tr là một Card riêng biệt */
   .product-table tr.product-row {
     display: flex;
     flex-direction: column;
@@ -469,7 +526,6 @@ body {
     width: 100%;
   }
 
-  /* Nhãn tên cột lấy từ data-label */
   .product-table td::before {
     content: attr(data-label);
     font-weight: 600;
