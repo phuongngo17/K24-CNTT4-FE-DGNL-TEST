@@ -3,9 +3,11 @@ import ProductRow from './ProductRow.jsx';
 
 /**
  * @param {Object} props
- * @param {Array} props.products
+ * @param {Array} props.products 
+ * @param {Function} [props.onEdit]
+ * @param {Function} [props.onDelete]
  */
-export default function ProductTable({ products = [] }) {
+export default function ProductTable({ products = [], onEdit, onDelete }) {
   return (
     <div className="table-responsive">
       <table data-testid="product-table" className="product-table">
@@ -22,7 +24,12 @@ export default function ProductTable({ products = [] }) {
         </thead>
         <tbody>
           {products.map((product) => (
-            <ProductRow key={product.id} product={product} />
+            <ProductRow
+              key={product.id}
+              product={product}
+              onEdit={onEdit}
+              onDelete={onDelete}
+            />
           ))}
         </tbody>
       </table>

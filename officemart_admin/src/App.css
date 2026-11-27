@@ -1,6 +1,6 @@
 /* src/App.css */
 /* ============================================================================
-   MỤC 4.1: CSS GIAO DIỆN DANH SÁCH SẢN PHẨM OFFICEMART ADMIN
+   CSS GIAO DIỆN QUẢN TRỊ OFFICEMART ADMIN (MỤC 4.1 & 4.2)
    ============================================================================ */
 
 /* ----------------------------------------------------------------------------
@@ -45,7 +45,7 @@ body {
 .header-logo {
   font-size: 1.25rem;
   font-weight: 700;
-  color: white;
+  color: #ffffff;
   text-decoration: none;
   letter-spacing: -0.025em;
 }
@@ -93,13 +93,28 @@ body {
   line-height: 1.25rem;
 }
 
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .btn-primary {
   background-color: #b91c1c;
   color: #ffffff;
 }
 
-.btn-primary:hover {
-  background-color: #1d4ed8;
+.btn-primary:hover:not(:disabled) {
+  background-color: #991b1b;
+}
+
+.btn-secondary {
+  background-color: #ffffff;
+  color: #374151;
+  border-color: #d1d5db;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: #f3f4f6;
 }
 
 .btn-sm {
@@ -113,7 +128,7 @@ body {
   border-color: rgb(180, 180, 180);
 }
 
-.btn-edit:hover {
+.btn-edit:hover:not(:disabled) {
   background-color: #f3f4f6;
 }
 
@@ -123,7 +138,7 @@ body {
   border-color: #fecaca;
 }
 
-.btn-delete:hover {
+.btn-delete:hover:not(:disabled) {
   background-color: #fee2e2;
 }
 
@@ -217,10 +232,181 @@ body {
 }
 
 /* ----------------------------------------------------------------------------
+   4.2.1 TRẠNG THÁI TẢI DANH SÁCH: LOADING, ERROR, EMPTY
+   ---------------------------------------------------------------------------- */
+.state-container {
+  padding: 48px 16px;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  margin-top: 16px;
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #b91c1c;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 12px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-message {
+  color: #dc2626;
+  font-weight: 500;
+  margin-bottom: 16px;
+  font-size: 1rem;
+}
+
+.empty-state {
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+/* ----------------------------------------------------------------------------
+   4.2.2 & 4.2.4 FORM THÊM / SỬA SẢN PHẨM & FIELD ERRORS
+   ---------------------------------------------------------------------------- */
+.form-card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  padding: 24px;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  background-color: #ffffff;
+  color: #111827;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #b91c1c;
+  box-shadow: 0 0 0 2px rgba(185, 28, 28, 0.15);
+}
+
+.form-control.is-invalid {
+  border-color: #dc2626;
+}
+
+.field-error {
+  color: #dc2626;
+  font-size: 0.8125rem;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* ----------------------------------------------------------------------------
+   4.2.5 HỘP THOẠI XÁC NHẬN XOÁ TỰ LÀM (ConfirmDialog)
+   ---------------------------------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.confirm-dialog {
+  background-color: #ffffff;
+  border-radius: 8px;
+  max-width: 440px;
+  width: 100%;
+  padding: 24px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.confirm-dialog h2 {
+  margin: 0 0 12px;
+  font-size: 1.125rem;
+  color: #111827;
+}
+
+.confirm-dialog p {
+  margin: 0 0 24px;
+  color: #4b5563;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.confirm-dialog .dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* ----------------------------------------------------------------------------
+   4.2.3 & 4.2.5 THÔNG BÁO TOAST THÀNH CÔNG (data-testid="toast")
+   ---------------------------------------------------------------------------- */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background-color: #10b981;
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  font-size: 0.875rem;
+  font-weight: 500;
+  z-index: 9999;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ----------------------------------------------------------------------------
    4.1.4 HIỂN THỊ TRÊN ĐIỆN THOẠI (Responsive < 768px)
-   - Mỗi sản phẩm hiển thị thành một thẻ (Card) riêng
-   - Các thông tin trong thẻ xếp theo chiều dọc
-   - Tại 375px không xuất hiện thanh cuộn ngang
    ---------------------------------------------------------------------------- */
 @media (max-width: 768px) {
   .main-content {
@@ -249,7 +435,7 @@ body {
   }
 
   .product-table thead {
-    display: none; /* Ẩn hàng tiêu đề thead trên mobile */
+    display: none; 
   }
 
   .product-table tbody {

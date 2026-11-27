@@ -3,11 +3,12 @@ import { categoryNames } from '../data/sample.js';
 import { formatPrice } from '../utils/format.js';
 
 /**
-
  * @param {Object} props
  * @param {Object} props.product
+ * @param {Function} [props.onEdit]
+ * @param {Function} [props.onDelete]
  */
-export default function ProductRow({ product }) {
+export default function ProductRow({ product, onEdit, onDelete }) {
   const categoryLabel = categoryNames[product.category] || product.category;
 
   const isActive = product.status === 'active';
@@ -48,6 +49,7 @@ export default function ProductRow({ product }) {
             type="button"
             data-testid="edit-button"
             className="btn btn-sm btn-edit"
+            onClick={() => onEdit && onEdit(product)}
           >
             Sửa
           </button>
@@ -55,6 +57,7 @@ export default function ProductRow({ product }) {
             type="button"
             data-testid="delete-button"
             className="btn btn-sm btn-delete"
+            onClick={() => onDelete && onDelete(product)}
           >
             Xoá
           </button>
