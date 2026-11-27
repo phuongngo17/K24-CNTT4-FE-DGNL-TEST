@@ -1,5 +1,11 @@
 /* src/App.css */
-/* Thiết lập cơ bản & Reset */
+/* ============================================================================
+   MỤC 4.1: CSS GIAO DIỆN DANH SÁCH SẢN PHẨM OFFICEMART ADMIN
+   ============================================================================ */
+
+/* ----------------------------------------------------------------------------
+   4.1.1 BỐ CỤC CƠ BẢN & HEADER
+   ---------------------------------------------------------------------------- */
 * {
   box-sizing: border-box;
 }
@@ -19,9 +25,9 @@ body {
   flex-direction: column;
 }
 
-/* Header */
+/* Header OfficeMart Admin */
 .app-header {
-  background-color: #ffffff;
+  background-color: #b91c1c;
   border-bottom: 1px solid #e5e7eb;
   padding: 16px 24px;
   position: sticky;
@@ -39,12 +45,12 @@ body {
 .header-logo {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #111827;
+  color: white;
   text-decoration: none;
   letter-spacing: -0.025em;
 }
 
-/* Khối nội dung chính (main) */
+/* Thẻ main chứa nội dung chính */
 .main-content {
   flex: 1;
   max-width: 1200px;
@@ -54,7 +60,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Tiêu đề trang và nút thao tác chính */
+/* Tiêu đề trang h1 "Sản phẩm" và nút "Thêm sản phẩm" */
 .page-header {
   display: flex;
   justify-content: space-between;
@@ -71,7 +77,7 @@ body {
   color: #111827;
 }
 
-/* Hệ thống nút bấm (Buttons) */
+/* Hệ thống Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -87,28 +93,13 @@ body {
   line-height: 1.25rem;
 }
 
-.btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
 .btn-primary {
-  background-color: #2563eb;
+  background-color: #b91c1c;
   color: #ffffff;
 }
 
-.btn-primary:hover:not(:disabled) {
+.btn-primary:hover {
   background-color: #1d4ed8;
-}
-
-.btn-secondary {
-  background-color: #ffffff;
-  color: #374151;
-  border-color: #d1d5db;
-}
-
-.btn-secondary:hover:not(:disabled) {
-  background-color: #f3f4f6;
 }
 
 .btn-sm {
@@ -117,13 +108,13 @@ body {
 }
 
 .btn-edit {
-  background-color: #eff6ff;
-  color: #1d4ed8;
-  border-color: #bfdbfe;
+  background-color: #ffffff;
+  color: #000000;
+  border-color: rgb(180, 180, 180);
 }
 
-.btn-edit:hover:not(:disabled) {
-  background-color: #dbeafe;
+.btn-edit:hover {
+  background-color: #f3f4f6;
 }
 
 .btn-delete {
@@ -132,7 +123,7 @@ body {
   border-color: #fecaca;
 }
 
-.btn-delete:hover:not(:disabled) {
+.btn-delete:hover {
   background-color: #fee2e2;
 }
 
@@ -142,7 +133,9 @@ body {
   align-items: center;
 }
 
-/* Bảng dữ liệu sản phẩm (Table) */
+/* ----------------------------------------------------------------------------
+   4.1.2 BẢNG SẢN PHẨM (Desktop >= 768px)
+   ---------------------------------------------------------------------------- */
 .table-responsive {
   background-color: #ffffff;
   border-radius: 8px;
@@ -191,7 +184,10 @@ body {
   font-size: 0.8125rem;
 }
 
-/* Nhãn trạng thái (Status Badge) */
+/* ----------------------------------------------------------------------------
+   4.1.3 ĐỊNH DẠNG DỮ LIỆU: TRẠNG THÁI VÀ TỒN KHO
+   ---------------------------------------------------------------------------- */
+/* Nhãn trạng thái (data-testid="product-status") */
 .status-badge {
   display: inline-block;
   padding: 3px 10px;
@@ -202,230 +198,30 @@ body {
   white-space: nowrap;
 }
 
+/* active: Đang bán (nền xanh) */
 .status-active {
   background-color: #dcfce7;
   color: #15803d;
 }
 
+/* inactive: Ngừng bán (nền xám) */
 .status-inactive {
   background-color: #f3f4f6;
   color: #4b5563;
 }
 
-/* Cảnh báo hết hàng */
+/* Tồn kho bằng 0 hiển thị "Hết hàng" màu đỏ */
 .out-of-stock {
   color: #dc2626;
   font-weight: 600;
 }
 
-/* Thông báo toast */
-.toast {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background-color: #10b981;
-  color: #ffffff;
-  padding: 12px 20px;
-  border-radius: 6px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  font-size: 0.875rem;
-  font-weight: 500;
-  z-index: 9999;
-  animation: slideUp 0.3s ease-out;
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* Hộp thoại xác nhận xoá (Confirm Dialog) */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  padding: 16px;
-}
-
-.confirm-dialog {
-  background-color: #ffffff;
-  border-radius: 8px;
-  max-width: 440px;
-  width: 100%;
-  padding: 24px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-.confirm-dialog h2 {
-  margin: 0 0 12px;
-  font-size: 1.125rem;
-  color: #111827;
-}
-
-.confirm-dialog p {
-  margin: 0 0 24px;
-  color: #4b5563;
-  font-size: 0.875rem;
-  line-height: 1.4;
-}
-
-.confirm-dialog .dialog-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-}
-
-/* Các trạng thái Loading, Lỗi, Rỗng */
-.state-container {
-  padding: 48px 16px;
-  text-align: center;
-  background-color: #ffffff;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-}
-
-.loading-spinner {
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  border: 3px solid #e5e7eb;
-  border-top-color: #2563eb;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  margin-bottom: 12px;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.error-message {
-  color: #dc2626;
-  font-weight: 500;
-  margin-bottom: 16px;
-}
-
-.empty-state {
-  color: #6b7280;
-  font-size: 1rem;
-}
-
-/* Khối tìm kiếm, lọc và phân trang */
-.filter-bar {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-}
-
-.filter-item {
-  flex: 1;
-  min-width: 180px;
-}
-
-.filter-input,
-.filter-select {
-  width: 100%;
-  padding: 8px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  font-size: 0.875rem;
-  background-color: #ffffff;
-  color: #111827;
-}
-
-.filter-input:focus,
-.filter-select:focus {
-  outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  margin-top: 24px;
-}
-
-.page-info {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #4b5563;
-}
-
-/* Form tạo và sửa sản phẩm */
-.form-card {
-  background-color: #ffffff;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-  padding: 24px;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.form-group {
-  margin-bottom: 18px;
-}
-
-.form-label {
-  display: block;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #374151;
-  margin-bottom: 6px;
-}
-
-.form-control {
-  width: 100%;
-  padding: 8px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  font-size: 0.875rem;
-}
-
-.form-control:focus {
-  outline: none;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
-}
-
-.form-control.is-invalid {
-  border-color: #dc2626;
-}
-
-.field-error {
-  color: #dc2626;
-  font-size: 0.8125rem;
-  margin-top: 4px;
-}
-
-.form-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-top: 24px;
-}
-
-/* ========================================================
-   RESPONSIVE DESIGN (Hiển thị trên điện thoại < 768px)
-   ======================================================== */
+/* ----------------------------------------------------------------------------
+   4.1.4 HIỂN THỊ TRÊN ĐIỆN THOẠI (Responsive < 768px)
+   - Mỗi sản phẩm hiển thị thành một thẻ (Card) riêng
+   - Các thông tin trong thẻ xếp theo chiều dọc
+   - Tại 375px không xuất hiện thanh cuộn ngang
+   ---------------------------------------------------------------------------- */
 @media (max-width: 768px) {
   .main-content {
     padding: 16px 12px;
@@ -453,7 +249,7 @@ body {
   }
 
   .product-table thead {
-    display: none; /* Ẩn thead trên mobile */
+    display: none; /* Ẩn hàng tiêu đề thead trên mobile */
   }
 
   .product-table tbody {
@@ -463,7 +259,7 @@ body {
     width: 100%;
   }
 
-  /* Mỗi dòng sản phẩm trở thành một Card */
+  /* Mỗi dòng tr là một Card riêng biệt */
   .product-table tr.product-row {
     display: flex;
     flex-direction: column;
@@ -487,7 +283,7 @@ body {
     width: 100%;
   }
 
-  /* Tiêu đề của từng ô trong card */
+  /* Nhãn tên cột lấy từ data-label */
   .product-table td::before {
     content: attr(data-label);
     font-weight: 600;
@@ -505,16 +301,5 @@ body {
   .product-table td.col-actions .action-buttons {
     width: 100%;
     justify-content: flex-end;
-  }
-
-  /* Phân trang và thanh lọc trên mobile */
-  .filter-bar {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .filter-item {
-    width: 100%;
-    min-width: 100%;
   }
 }

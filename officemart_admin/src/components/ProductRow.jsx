@@ -1,25 +1,19 @@
-// src/components/ProductRow.jsx
 import React from 'react';
 import { categoryNames } from '../data/sample.js';
 import { formatPrice } from '../utils/format.js';
 
 /**
- * Component hiển thị một dòng hoặc một thẻ sản phẩm
+
  * @param {Object} props
- * @param {Object} props.product - Dữ liệu sản phẩm
- * @param {Function} [props.onEdit] - Hàm callback khi bấm Sửa
- * @param {Function} [props.onDelete] - Hàm callback khi bấm Xóa
+ * @param {Object} props.product
  */
-export default function ProductRow({ product, onEdit, onDelete }) {
-  // Lấy tên danh mục tiếng Việt từ categoryNames
+export default function ProductRow({ product }) {
   const categoryLabel = categoryNames[product.category] || product.category;
 
-  // Xác định trạng thái hiển thị
   const isActive = product.status === 'active';
   const statusLabel = isActive ? 'Đang bán' : 'Ngừng bán';
   const statusClass = isActive ? 'status-badge status-active' : 'status-badge status-inactive';
 
-  // Xác định tồn kho: bằng 0 thì báo "Hết hàng" màu đỏ
   const isOutOfStock = Number(product.stock) === 0;
 
   return (
@@ -54,7 +48,6 @@ export default function ProductRow({ product, onEdit, onDelete }) {
             type="button"
             data-testid="edit-button"
             className="btn btn-sm btn-edit"
-            onClick={() => onEdit && onEdit(product)}
           >
             Sửa
           </button>
@@ -62,7 +55,6 @@ export default function ProductRow({ product, onEdit, onDelete }) {
             type="button"
             data-testid="delete-button"
             className="btn btn-sm btn-delete"
-            onClick={() => onDelete && onDelete(product)}
           >
             Xoá
           </button>
